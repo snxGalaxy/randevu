@@ -29,9 +29,9 @@ class SystemJournal extends CActiveRecord
     public function rules()
     {
         return [
-            [['severity_name', 'reporter_user_name', 'content', 'is_readed'], 'required'],
-            [['severity_name'], 'exists', 'targetClass' => Severity::className(), 'targetAttribute' => ['severity_name' => 'name']],
-            [['reporter_user_name'], 'exists', 'targetClass' => User::className(), 'targetAttribute' => ['reporter_user_name' => 'name']],
+            [['severity_name', 'reporter_user_name', 'subject', 'is_readed'], 'required'],
+            [['severity_name'], 'exist', 'targetClass' => Severity::className(), 'targetAttribute' => ['severity_name' => 'name']],
+            [['reporter_user_name'], 'exist', 'targetClass' => User::className(), 'targetAttribute' => ['reporter_user_name' => 'name']],
             [['subject'], 'string', 'min' => 1, 'max' => 128],
             [['content'], 'string', 'min' => 1, 'max' => 16000],
             [['is_readed'], 'integer'],

@@ -23,6 +23,9 @@ $config = [
             ],
         ],
         'db' => $db,
+        'systemJournal' => function () {
+            return app\modules\systemJournal\components\SystemJournalComponent::build();
+        },
     ],
     'params' => $params,
     /*

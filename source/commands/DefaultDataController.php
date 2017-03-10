@@ -38,6 +38,7 @@ class DefaultDataController extends CConsoleController
         DbHelper::foreignKeyChecks(true);
         $this->stdout('Resetting directories');
         FileHelper::createDirectory(Yii::getAlias('@shared'));
+        Yii::$app->systemJournal->notice('Database default values are resetted');
         
         return self::EXIT_CODE_NORMAL;
     }

@@ -57,6 +57,9 @@ $config = [
                 ],
             ],
         ],
+        'systemJournal' => function () {
+            return app\modules\systemJournal\components\SystemJournalComponent::build();
+        },
     ],
 //    'language' => 'ru-RU',
     'modules' => [

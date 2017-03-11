@@ -15,9 +15,9 @@ class LoginForm extends CForm
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t(__NAMESPACE__ . '/loginForm', 'Username'),
-            'password' => Yii::t(__NAMESPACE__ . '/loginForm', 'Password'),
-            'isRemember' => Yii::t(__NAMESPACE__ . '/loginForm', 'Remember Me'),
+            'username' => Yii::t('app/user', 'Username'),
+            'password' => Yii::t('app/user', 'Password'),
+            'isRemember' => Yii::t('app/user', 'Remember Me'),
         ];
     }
     
@@ -45,7 +45,7 @@ class LoginForm extends CForm
         $user = $this->getUser();
         
         if (empty($user) || $user->password != User::hashPassword($this->password)) {
-            $this->addError('username', Yii::t(__NAMESPACE__ . '/loginForm', 'Incorrect username or password'));
+            $this->addError('username', Yii::t('app/user', 'Incorrect username or password'));
         }
     }
     

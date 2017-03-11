@@ -23,21 +23,21 @@ class UserForm extends CForm
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t(__NAMESPACE__ . '/userForm/labels', 'Username'),
-            'password' => Yii::t(__NAMESPACE__ . '/userForm/labels', 'Password'),
-            'repeatPassword' => Yii::t(__NAMESPACE__ . '/userForm/labels', 'Repeat Password'),
-            'role' => Yii::t(__NAMESPACE__ . '/userForm/labels', 'User Role'),
-            'email' => Yii::t(__NAMESPACE__ . '/userForm/labels', 'Email'),
-            'isActive' => Yii::t(__NAMESPACE__ . '/userForm/labels', 'Active'),
+            'username' => Yii::t('app/user', 'Username'),
+            'password' => Yii::t('app/user', 'Password'),
+            'repeatPassword' => Yii::t('app/user', 'Repeat Password'),
+            'role' => Yii::t('app/user', 'User Role'),
+            'email' => Yii::t('app/user', 'Email'),
+            'isActive' => Yii::t('app/user', 'Active'),
         ];
     }
     
     public function attributeHints()
     {
         return [
-            'repeatPassword' => Yii::t(__NAMESPACE__ . '/userForm/hints', 'Should match \'password\' field'),
-            'role' => Yii::t(__NAMESPACE__ . '/userForm/hints', 'Role defines user rights and permissions'),
-            'isActive' => Yii::t(__NAMESPACE__ . '/userForm/hints', 'Inactive users can\'t login to system'),
+            'repeatPassword' => Yii::t('app/user', 'Should match \'password\' field'),
+            'role' => Yii::t('app/user', 'Role defines user rights and permissions'),
+            'isActive' => Yii::t('app/user', 'Inactive users can\'t login to system'),
         ];
     }
     

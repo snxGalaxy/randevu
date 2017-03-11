@@ -25,13 +25,13 @@ class SystemJournalSearch extends SystemJournal
     public function attributeLabels()
     {
         return [
-            'cId' => Yii::t('app/system-journal', 'ID'),
-            'cSeverity' => Yii::t('app/system-journal', 'Severity'),
-            'cReporter' => Yii::t('app/system-journal', 'Reporter User'),
-            'cSubject' => Yii::t('app/system-journal', 'Subject'),
-            'cIsReaded' => Yii::t('app/system-journal', 'Readed'),
-            'cCreatedAt' => Yii::t('app/system-journal', 'Reported On'),
-            'cDeletedAt' => Yii::t('app/system-journal', 'Deleted'),
+            'cId' => Yii::t('app/systemJournal', 'ID'),
+            'cSeverity' => Yii::t('app/systemJournal', 'Severity'),
+            'cReporter' => Yii::t('app/systemJournal', 'Reporter User'),
+            'cSubject' => Yii::t('app/systemJournal', 'Subject'),
+            'cIsReaded' => Yii::t('app/systemJournal', 'Readed'),
+            'cCreatedAt' => Yii::t('app/systemJournal', 'Reported On'),
+            'cDeletedAt' => Yii::t('app/systemJournal', 'Deleted'),
         ];
     }
     

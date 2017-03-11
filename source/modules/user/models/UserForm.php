@@ -3,6 +3,7 @@
 namespace app\modules\user\models;
 
 use app\components\custom\CForm;
+use app\components\helpers\ArrayHelper;
 use app\modules\contact\models\Email;
 use Yii;
 
@@ -78,7 +79,7 @@ class UserForm extends CForm
         ]);
         
         if (!$email->save()) {
-            $this->addError('email', implode('; ', $email->getErrors()));
+            $this->addError('email', implode('; ', ArrayHelper::extractValues($email->getErrors())));
             
             return false;
         }
@@ -92,7 +93,7 @@ class UserForm extends CForm
         ]);
         
         if (!$user->validate()) {
-            $this->addError('username', implode('; ', $user->getErrors()));
+            $this->addError('username', implode('; ', ArrayHelper::extractValues($user->getErrors())));
             
             return false;
         }
@@ -100,7 +101,7 @@ class UserForm extends CForm
         $user->password = User::hashPassword($user->password);
         
         if (!$user->save(false)) {
-            $this->addError('username', implode('; ', $user->getErrors()));
+            $this->addError('username', implode('; ', ArrayHelper::extractValues($user->getErrors())));
             
             return false;
         }
@@ -119,7 +120,7 @@ class UserForm extends CForm
         ], false);
         
         if (!$user->update()) {
-            $this->addError('username', implode('; ', $user->getErrors()));
+            $this->addError('username', implode('; ', ArrayHelper::extractValues($user->getErrors())));
             
             return false;
         }

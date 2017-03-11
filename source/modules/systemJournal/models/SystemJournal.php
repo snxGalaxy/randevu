@@ -3,6 +3,7 @@
 namespace app\modules\systemJournal\models;
 
 use app\components\custom\CActiveRecord;
+use app\components\helpers\TimeHelper;
 use app\models\Severity;
 use app\modules\user\models\User;
 use Yii;
@@ -26,6 +27,21 @@ class SystemJournal extends CActiveRecord
         return 'system_journal';
     }
     
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app/systemJournal', 'ID'),
+            'severity_name' => Yii::t('app/systemJournal', 'Severity'),
+            'reporter_user_name' => Yii::t('app/systemJournal', 'Reporter User'),
+            'subject' => Yii::t('app/systemJournal', 'Subject'),
+            'content' => Yii::t('app/systemJournal', 'Content'),
+            'is_readed' => Yii::t('app/systemJournal', 'Readed'),
+            'created_at' => Yii::t('app/systemJournal', 'Reported At'),
+            'updated_at' => Yii::t('app/systemJournal', 'Updated At'),
+            'deleted_at' => Yii::t('app/systemJournal', 'Deleted At'),
+        ];
+    }
+    
     public function rules()
     {
         return [
@@ -35,7 +51,7 @@ class SystemJournal extends CActiveRecord
             [['subject'], 'string', 'min' => 1, 'max' => 128],
             [['content'], 'string', 'min' => 1, 'max' => 16000],
             [['is_readed'], 'integer'],
-            [['created_at', 'updated_at', 'deleted_at'], 'date', 'format' => Yii::$app->formatter->datetimeFormat],
+            [['created_at', 'updated_at', 'deleted_at'], 'date', 'format' => TimeHelper::FORMAT_TIMESTAMP],
         ];
     }
     

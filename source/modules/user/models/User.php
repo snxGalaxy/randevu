@@ -28,7 +28,7 @@ class User extends CActiveRecord implements IdentityInterface
     {
         return 'users';
     }
-    
+
     public function rules()
     {
         return [

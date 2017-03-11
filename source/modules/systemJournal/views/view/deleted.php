@@ -13,40 +13,23 @@ use yii\web\View;
 
 /* @var $this View */
 /* @var $systemJournalSearch SystemJournalSearch */
-/* @var $systemJournalView ActiveDataProvider */
-/* @var $systemJournalForm SystemJournalForm */
+/* @var $systemJournalDeleted ActiveDataProvider */
 
-$this->title = Yii::t('app/systemJournal', 'System Journal');
+$this->title = Yii::t('app/systemJournal', 'Deleted Records');
 $this->params['breadcrumbs'] = [
+    ['label' => Yii::t('app/systemJournal', 'System Journal'), 'url' => ['/systemJournal/view/index']],
     ['label' => $this->title],
 ];
 $this->params['pageActions'] = [
-    Html::pageActionModal('fa-edit', Yii::t('app/systemJournal', 'Add Journal Record'), '#mdl-new-record-form'),
-    Html::pageActionLink('fa-envelope-o', Yii::t('app/systemJournal', 'Mark All As Readed'), ['/systemJournal/actions/mark-all-as-readed'], Yii::t('app/systemJournal', 'Are you sure you want to mark all system journal records as readed?')),
-    Html::pageActionLink('fa-trash', 'View Deleted', ['/systemJournal/view/deleted'], null, false),
+    Html::pageActionLink('fa-arrow-left', 'Back To List', ['/systemJournal/view/index'], null, false),
 ];
-
-$formCreate = ActiveForm::begin([
-    'id' => 'frm-create-journal-record',
-    'action' => ['/systemJournal/actions/create'],
-]);
-Modal::begin([
-    'id' => 'mdl-new-record-form',
-    'header' => sprintf('<h4 class="modal-title">%s</h4>', Yii::t('app/systemJournal', 'New System Journal Record')),
-    'footer' => Html::modalSubmitButton() . Html::modalCancelButton(),
-]);
-echo $formCreate->field($systemJournalForm, 'severity')->dropDownList(array_combine(Severity::listSeverities(), Severity::listSeverities()));
-echo $formCreate->field($systemJournalForm, 'subject');
-echo $formCreate->field($systemJournalForm, 'content')->textarea();
-Modal::end();
-ActiveForm::end();
 
 ?>
 
 <div class="row">
     <div class="col-md-12">
         <?= GridView::widget([
-            'dataProvider' => $systemJournalView,
+            'dataProvider' => $systemJournalDeleted,
             'filterModel' => $systemJournalSearch,
             'rowOptions' => function ($model) {
                 $class = '';
@@ -114,8 +97,8 @@ ActiveForm::end();
                             $dropdownItems[] = Html::actionDropdownLink('fa-envelope-o', Yii::t('app/systemJournal', 'Mark As Readed'), ['/systemJournal/actions/mark-as-readed', 'id' => $model->cId]);
                         }
                         
-                        if (!$model->cDeletedAt) {
-                            $dropdownItems[] = Html::actionDropdownLink('fa-trash', Yii::t('app/systemJournal', 'Delete'), ['/systemJournal/actions/delete', 'id' => $model->cId], Yii::t('app/systemJournal', 'Are you sure you want to delete system journal record "{0}"?', $model->cSubject));
+                        if ($model->cDeletedAt) {
+                            $dropdownItems[] = Html::actionDropdownLink('fa-trash-o', Yii::t('app/systemJournal', 'Restore'), ['/systemJournal/actions/delete', 'id' => $model->cId, 'isReverse' => true], Yii::t('app/systemJournal', 'Are you sure you want to restore system journal record "{0}"?', $model->cSubject));
                         }
                         
                         return Html::actionDropdown($dropdownItems);

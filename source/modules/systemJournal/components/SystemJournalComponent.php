@@ -2,6 +2,7 @@
 
 namespace app\modules\systemJournal\components;
 
+use app\components\helpers\ArrayHelper;
 use app\models\Severity;
 use app\modules\systemJournal\models\SystemJournal;
 use app\modules\user\models\User;
@@ -22,7 +23,7 @@ class SystemJournalComponent
         return new SystemJournalComponent();
     }
     
-    private function log($severity, $subject, $content = null)
+    private function log($severity, $subject, $content)
     {
         $systemJournal = new SystemJournal([
             'severity_name' => $severity,
@@ -33,7 +34,7 @@ class SystemJournalComponent
         ]);
         
         if (!$systemJournal->save()) {
-            throw new Exception('Can\'t save SystemJournal record: ' . implode('; ', $systemJournal->getErrors()));
+            throw new Exception('Can\'t save system journal record: ' . print_r(ArrayHelper::extractValues($systemJournal->getErrors()), true));
         }
     }
     
